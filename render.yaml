@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: crypto-airdrop-bot
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "python telegram_bot.py"
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
