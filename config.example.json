@@ -1,0 +1,22 @@
+{
+  "wallet_address": "YOUR_WALLET_ADDRESS_HERE",
+  "email": "your@email.com",
+  "twitter_username": "@yourusername",
+  "discord_username": "YourDiscord#1234",
+  "telegram_bot_token": "",
+  "telegram_chat_id": "",
+  "scan_interval_hours": 24,
+  "auto_claim": false,
+  "telegram_notifications": false,
+  "notification_settings": {
+    "new_airdrops": true,
+    "daily_tasks": true,
+    "value_updates": false
+  },
+  "filter_settings": {
+    "min_estimated_value": 0,
+    "only_confirmed": false,
+    "exclude_testnets": false,
+    "preferred_chains": ["Ethereum", "Arbitrum", "Solana", "Base"]
+  }
+}
