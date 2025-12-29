@@ -3,9 +3,6 @@ name: Telegram Bot 24/7
 on:
   push:
     branches: [ main ]
-  schedule:
-    # Runs every 5 minutes to keep bot alive
-    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -26,16 +23,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run Telegram Bot
+    - name: Run Telegram Bot (Continuous)
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
+        echo "🚀 Starting Telegram Bot..."
+        echo "Bot will run for 6 hours continuously"
+        
+        # Run bot in background
         python telegram_bot.py &
         BOT_PID=$!
         
-        # Keep bot running for 5 minutes
-        sleep 290
+        echo "✅ Bot started with PID: $BOT_PID"
         
-        # Gracefully stop bot
+        # Keep bot running for 6 hours (GitHub Actions limit)
+        # This allows bot to stay online continuously
+        sleep 21600
+        
+        echo "⏰ 6 hours completed, stopping bot gracefully..."
         kill $BOT_PID || true
